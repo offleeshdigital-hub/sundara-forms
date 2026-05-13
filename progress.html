@@ -604,6 +604,20 @@
 <script>
   window.addEventListener('DOMContentLoaded', () => {
     document.getElementById('visit-date').value = new Date().toISOString().split('T')[0];
+
+    // Update PDF filename (document.title) as name is typed
+    const firstInput = document.querySelector('input[placeholder="First name"]');
+    const lastInput  = document.querySelector('input[placeholder="Last name"]');
+    function updateTitle() {
+      const first = firstInput.value.trim();
+      const last  = lastInput.value.trim();
+      const name  = [first, last].filter(Boolean).join(' ');
+      document.title = name
+        ? name + ' — Progress Notes'
+        : 'Progress Notes — Sundara Skin';
+    }
+    firstInput.addEventListener('input', updateTitle);
+    lastInput.addEventListener('input', updateTitle);
   });
 
   function toggleCheck(el) {

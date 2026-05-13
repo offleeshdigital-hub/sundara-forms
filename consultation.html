@@ -1118,6 +1118,20 @@
   window.addEventListener('DOMContentLoaded', () => {
     const today = new Date().toISOString().split('T')[0];
     document.getElementById('visit-date').value = today;
+
+    // Update PDF filename (document.title) as name is typed
+    const firstInput = document.querySelector('input[placeholder="First name"]');
+    const lastInput  = document.querySelector('input[placeholder="Last name"]');
+    function updateTitle() {
+      const first = firstInput.value.trim();
+      const last  = lastInput.value.trim();
+      const name  = [first, last].filter(Boolean).join(' ');
+      document.title = name
+        ? name + ' — Client Consultation Form'
+        : 'Client Consultation Form — Sundara Skin';
+    }
+    firstInput.addEventListener('input', updateTitle);
+    lastInput.addEventListener('input', updateTitle);
   });
 
   /* ── Checkbox toggle ── */
