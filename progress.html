@@ -356,6 +356,14 @@
       .section-label { font-size: 9px !important; }
     }
 
+
+    /* Normalise input height across iOS — date inputs render taller without this */
+    input[type=date], input[type=text], input[type=number] {
+      height: 44px;
+      -webkit-appearance: none;
+      appearance: none;
+      box-sizing: border-box;
+    }
     /* ── MOBILE / TOUCH FIXES ── */
     input, textarea, select {
       font-size: 16px !important;
@@ -367,14 +375,16 @@
     }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 720px) {
+    @media (max-width: 900px) {
       .four-col { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 720px) {
       .three-col { grid-template-columns: 1fr 1fr; }
       .two-col { grid-template-columns: 1fr; }
       .product-row { grid-template-columns: 1fr; }
       .product-row-label { text-align: left; }
     }
-    @media (max-width: 480px) {
+    @media (max-width: 400px) {
       .four-col { grid-template-columns: 1fr; }
       .three-col { grid-template-columns: 1fr; }
     }
