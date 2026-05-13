@@ -613,7 +613,7 @@
       const last  = lastInput.value.trim();
       const name  = [first, last].filter(Boolean).join(' ');
       document.title = name
-        ? name + ' — Progress Notes'
+        ? 'Progress Notes - ' + name
         : 'Progress Notes — Sundara Skin';
     }
     firstInput.addEventListener('input', updateTitle);

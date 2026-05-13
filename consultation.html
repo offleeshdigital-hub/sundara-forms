@@ -1127,7 +1127,7 @@
       const last  = lastInput.value.trim();
       const name  = [first, last].filter(Boolean).join(' ');
       document.title = name
-        ? name + ' — Client Consultation Form'
+        ? 'Client Consultation Form - ' + name
         : 'Client Consultation Form — Sundara Skin';
     }
     firstInput.addEventListener('input', updateTitle);
