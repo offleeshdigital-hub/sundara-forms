@@ -177,6 +177,9 @@
       background: var(--warm-white);
       outline: none;
       width: 100%;
+      height: 44px;
+      -webkit-appearance: none;
+      appearance: none;
       transition: border-color 0.18s, box-shadow 0.18s;
     }
     .field-input:focus {
@@ -679,12 +682,17 @@
     #face-svg { touch-action: none; }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 720px) {
+    @media (max-width: 900px) {
       .info-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 720px) {
       .face-chart-wrap { grid-template-columns: 1fr; }
       .therapist-fields { grid-template-columns: 1fr; }
     }
-    @media (max-width: 480px) {
+    @media (max-width: 540px) {
+      .info-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 400px) {
       .info-grid { grid-template-columns: 1fr; }
     }
   </style>
@@ -1154,9 +1162,12 @@
     const viewBox = svg.viewBox.baseVal;
     const scaleX = viewBox.width / rect.width;
     const scaleY = viewBox.height / rect.height;
-    // Support both mouse and touch events
-    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    // Support mouse, touchstart and touchend (touchend uses changedTouches)
+    const touch = (e.changedTouches && e.changedTouches.length > 0)
+      ? e.changedTouches[0]
+      : (e.touches && e.touches.length > 0 ? e.touches[0] : null);
+    const clientX = touch ? touch.clientX : e.clientX;
+    const clientY = touch ? touch.clientY : e.clientY;
     const x = (clientX - rect.left) * scaleX;
     const y = (clientY - rect.top) * scaleY;
 
